@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="content"> Auglýsing</label>
-            <sf:textarea type="text" path="content" id="content" rows="10" cols="40" class="form-control"/>
+            <sf:textarea type="text" path="content" id="content" rows="10" class="form-control"/>
         </div>
 
         <input type="submit" value="Senda" class="btn btn-default"></input>

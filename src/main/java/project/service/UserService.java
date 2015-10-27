@@ -45,4 +45,7 @@ public interface UserService {
      */
     List<User> findByUsername(String username);
 
+
+    boolean exists(String username);
+
 }

@@ -13,15 +13,25 @@
 <t:wrapper>
     <h2>Nýr notandi</h2>
 
-    <sf:form name="form" action="/new/user" method="post" commandName="user" role="form" class="form-inline">
+    <sf:form name="form" action="/new/user" method="post" commandName="user" role="form">
+        <div class="form-group">
+            <label for="email">Netfang:</label>
+            <sf:input type="text" path="email" id="email" class="form-control"/>
+        </div>
+
         <div class="form-group">
             <label for="username">Notandanafn:</label>
             <sf:input type="text" path="username" id="username" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="password">Lykilorð</label>
+            <label for="password">Lykilorð:</label>
             <sf:input type="password" path="password" id="password" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm">Staðfesta lykilorð:</label>
+            <input type="password" path="confirm" id="confirm" class="form-control"/>
         </div>
 
         <input type="submit" value="Senda" class="btn btn-default"></input>

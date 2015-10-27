@@ -63,4 +63,10 @@ public class UserServiceImplementation implements UserService {
     public List<User> findByUsername(String username) {
         return repository.findByUsername(username);
     }
+
+
+    @Override
+    public boolean exists(String username) {
+        return repository.exists(username);
+    }
 }

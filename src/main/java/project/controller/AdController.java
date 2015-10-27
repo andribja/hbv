@@ -3,10 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Ad;
 import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
@@ -103,6 +100,35 @@ public class AdController {
         return "users/new_user";
     }
 
-    //@RequestMapping(value = "/new/user", method = RequestMethod.POST)
-    //public String userViewGet()
+    @RequestMapping(value = "/new/user", method = RequestMethod.POST)
+    public String newUuserViewGet(@ModelAttribute("user") User user, Model model) {
+
+        if(!userService.exists(user.getUsername()))
+            userService.save(user);
+        else
+            System.out.println("User exists");
+
+        return "users/user";
+    }
+
+
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    public String removeUserViewGet(@RequestParam("username") String username, Model model) {
+
+        User userToDelete = userService.findOne(username);
+        userService.delete(userToDelete);
+
+        return "redirect:/users";
+    }
+
+
+    @RequestMapping(value = "/ad/delete", method = RequestMethod.POST)
+    public String removeAdViewGet(@RequestParam("id") String id, Model model) {
+
+        Ad adToDelete = adService.findOne((long) Integer.parseInt(id));
+
+        adService.delete(adToDelete);
+
+        return "redirect:/ads";
+    }
 }

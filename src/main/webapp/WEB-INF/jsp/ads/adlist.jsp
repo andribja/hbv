@@ -19,12 +19,18 @@
             <ul class="list-group">
                 <c:forEach var="ad" items="${ads}">
                     <a href="/ads/${ad.id}" class="list-group-item">
-                        <span style="width: 15em; display: inline-block;">
+                        <span class="adlist-item adlist-title">
                             <h4>${ad.name}</h4>
                             <p>${ad.creationTimestamp}</p>
                         </span>
-                        <span style="display: inline-block;">
+                        <span class="adlist-item">
                             <p>${ad.content}</p>
+                        </span>
+
+                        <span class="adlist-item float-right">
+                            <form action="/ad/delete?id=${ad.id}" method="post" commandName="ad" role="form">
+                            <input type="submit" value="Eyða" class="btn btn-default"></input>
+                            </form>
                         </span>
                     </a>
                 </c:forEach>
