@@ -92,6 +92,15 @@ public class AdController {
     }
 
 
+    @RequestMapping(value = "/ads/user/{username}", method = RequestMethod.GET)
+    public String adGetAdsFromUsername(@PathVariable String username, Model model) {
+
+        //model.addAttribute("ad", adService.findByUsername(username));
+
+        return "ads/adlist";
+    }
+
+
     @RequestMapping(value = "/new/user", method = RequestMethod.GET)
     public String newUserViewGet(Model model) {
 

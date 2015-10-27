@@ -16,8 +16,8 @@ public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition="text")
     private String name;
+    @Column(columnDefinition="text")
     private String content;
     private long creationTime;
 
