@@ -23,6 +23,7 @@ public class PostitNoteController {
         this.postitNoteService = postitNoteService;
     }
 
+
     // Method that returns the correct view for the URL /postit
     // This handles the GET request for this URL
     // Notice the `method = RequestMethod.GET` part
@@ -41,6 +42,7 @@ public class PostitNoteController {
         return "postitnotes/PostitNotes";
     }
 
+
     // Method that receives the POST request on the URL /postit
     // and receives the ModelAttribute("postitNote")
     // That attribute is the attribute that is mapped to the form, so here
@@ -50,6 +52,8 @@ public class PostitNoteController {
     @RequestMapping(value = "/postit", method = RequestMethod.POST)
     public String postitNoteViewPost(@ModelAttribute("postitNote") PostitNote postitNote,
                                      Model model){
+
+        System.out.println(postitNote);
 
         // Save the Postit Note that we received from the form
         postitNoteService.save(postitNote);

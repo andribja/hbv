@@ -6,10 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <t:head>
-    <title>POS System</title>
+    <title>Upplýsingar um notanda</title>
 </t:head>
 
 <t:wrapper>
-    <h2>Piece Of Shit System</h2>
-    <p>Velkomin</p>
+	<h2>Notandi: ${user.username}</h2>
+	<a href="ads/user/${user.username}">Auglýsingar notanda</a>
 </t:wrapper>
