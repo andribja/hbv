@@ -10,13 +10,13 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "ads2")
+@Table(name = "ads3")
 public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(columnDefinition="text")
     private String name;
     private String content;
     private long creationTime;
