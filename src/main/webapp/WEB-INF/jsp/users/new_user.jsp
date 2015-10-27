@@ -13,7 +13,7 @@
 <t:wrapper>
     <h2>Nýr notandi</h2>
 
-    <sf:form name="form" action="/new/user" method="post" commandName="user" role="form">
+    <sf:form name="form" action="/new/user" method="post" commandName="user" role="form" class="form-inline">
         <div class="form-group">
             <label for="username">Notandanafn:</label>
             <sf:input type="text" path="username" id="username" class="form-control"/>
