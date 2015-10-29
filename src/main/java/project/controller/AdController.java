@@ -19,6 +19,7 @@ public class AdController {
     // Instance Variables
     AdService adService;
     UserService userService;
+    User currentUser;
 
     // Dependency Injection
     @Autowired
@@ -45,6 +46,7 @@ public class AdController {
     @RequestMapping(value = "/new/ad", method = RequestMethod.POST)
     public String adViewGet(@ModelAttribute("ad") Ad ad, Model model){
         ad.setCreationTime((new Date()).getTime());
+        ad.setAuthor(userService)
         adService.save(ad);
 
         model.addAttribute("ads", adService.findAllReverseOrder());

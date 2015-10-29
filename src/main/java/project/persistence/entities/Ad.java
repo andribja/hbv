@@ -10,16 +10,19 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "ads3")
+@Table(name = "ads")
 public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition="text")
     private String name;
+    @Column(columnDefinition="text")
     private String content;
     private long creationTime;
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User author;
 
     public Ad() {
     }
@@ -28,6 +31,12 @@ public class Ad {
         this.name = name;
         this.content = content;
     }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) { this.author = author; }
 
     public Long getId() {
         return id;
