@@ -8,10 +8,12 @@ import javax.persistence.*;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "users2") // If you want to specify a table name, you can do so here
+@Table(name = "users") // If you want to specify a table name, you can do so here
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String email;
     private String password;
@@ -24,6 +26,14 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

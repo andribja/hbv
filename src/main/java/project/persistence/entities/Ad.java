@@ -1,5 +1,7 @@
 package project.persistence.entities;
 
+import org.springframework.data.annotation.Reference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "ads3")
+@Table(name = "ads")
 public class Ad {
 
     @Id
@@ -21,12 +23,25 @@ public class Ad {
     private String content;
     private long creationTime;
 
+    @OneToOne
+    @JoinColumn(name="author_id")
+    private User author;
+
     public Ad() {
+        
     }
 
     public Ad(String name, String content) {
         this.name = name;
         this.content = content;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public Long getId() {

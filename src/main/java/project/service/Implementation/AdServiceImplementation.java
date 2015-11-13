@@ -3,11 +3,8 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Ad;
-import project.persistence.entities.PostitNote;
 import project.persistence.repositories.AdRepository;
-import project.persistence.repositories.PostitNoteRepository;
 import project.service.AdService;
-import project.service.PostitNoteService;
 
 import java.util.Collections;
 import java.util.List;

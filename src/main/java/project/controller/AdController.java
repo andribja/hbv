@@ -18,17 +18,12 @@ public class AdController {
 
     // Instance Variables
     AdService adService;
-    UserService userService;
 
     // Dependency Injection
     @Autowired
-    public AdController(AdService adService, UserService userService) {
+    public AdController(AdService adService) {
         this.adService = adService;
-        this.userService = userService;
-
-        //userService.save(new User("test2", "test2@test.com"));
     }
-
 
     // GET view for creating a new ad
     @RequestMapping(value = "/new/ad", method = RequestMethod.GET)
@@ -40,7 +35,6 @@ public class AdController {
         return "ads/new_ad";
     }
 
-
     // POST a new ad and return the ad-list view
     @RequestMapping(value = "/new/ad", method = RequestMethod.POST)
     public String adViewGet(@ModelAttribute("ad") Ad ad, Model model){
@@ -51,24 +45,6 @@ public class AdController {
 
         // Return the view
         return "ads/adlist";
-    }
-
-    // GET view for a single user
-    @RequestMapping(value = "/userpage", method=RequestMethod.GET)
-    public String userViewGet(Model model) {
-
-        model.addAttribute("user", userService.findOne("test"));
-
-        return "users/user";
-    }
-
-    // GET view for user-list
-    @RequestMapping(value = "/users", method=RequestMethod.GET)
-    public String userlistViewGet(Model model) {
-
-        model.addAttribute("users", userService.findAll());
-
-        return "users/userlist";
     }
 
     // GET view for all ads
@@ -91,7 +67,6 @@ public class AdController {
         return "ads/ad";
     }
 
-
     @RequestMapping(value = "/ads/user/{username}", method = RequestMethod.GET)
     public String adGetAdsFromUsername(@PathVariable String username, Model model) {
 
@@ -99,37 +74,6 @@ public class AdController {
 
         return "ads/adlist";
     }
-
-
-    @RequestMapping(value = "/new/user", method = RequestMethod.GET)
-    public String newUserViewGet(Model model) {
-
-        model.addAttribute("user",new User());
-
-        return "users/new_user";
-    }
-
-    @RequestMapping(value = "/new/user", method = RequestMethod.POST)
-    public String newUuserViewGet(@ModelAttribute("user") User user, Model model) {
-
-        if(!userService.exists(user.getUsername()))
-            userService.save(user);
-        else
-            System.out.println("User exists");
-
-        return "users/user";
-    }
-
-
-    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
-    public String removeUserViewGet(@RequestParam("username") String username, Model model) {
-
-        User userToDelete = userService.findOne(username);
-        userService.delete(userToDelete);
-
-        return "redirect:/users";
-    }
-
 
     @RequestMapping(value = "/ad/delete", method = RequestMethod.POST)
     public String removeAdViewGet(@RequestParam("id") String id, Model model) {
