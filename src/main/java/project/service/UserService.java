@@ -14,10 +14,10 @@ public interface UserService {
 
     List<User> findAllReverseOrder();
 
-    User findOne(String username);
+    User findOne(Long id);
 
     User findByUsername(String username);
 
-    boolean exists(String username);
+    boolean exists(Long id);
 
 }

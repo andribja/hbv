@@ -28,8 +28,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     Review findOne(Long id);
 
-    List<Review> findBySender(String sender);
+    List<Review> findBySender(Long senderId);
 
-    List<Review> findByReceiver(String receiver);
+    List<Review> findByReceiver(Long receiverId);
 
 }

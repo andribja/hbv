@@ -20,7 +20,6 @@ public class UserController {
     UserService userService;
     //Facebook facebook;
 
-    //@Inject
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -40,7 +39,7 @@ public class UserController {
     public String userlistViewGet(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
 
-        if(session.getAttribute("user_id") == null) {
+        if(session.getAttribute("user") == null) {
             System.out.println("denied");
             return "redirect:/login";
         }

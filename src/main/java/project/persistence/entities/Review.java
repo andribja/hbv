@@ -12,7 +12,7 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "reviews")
+@Table(name = "reviews", uniqueConstraints = @UniqueConstraint(columnNames = {"sender_id", "ad_id"}))
 public class Review {
 
     @Id
@@ -21,34 +21,33 @@ public class Review {
 
     @Column(columnDefinition="text")
     private String comment;
-
-    @OneToOne
+    @ManyToOne
     private User sender;
+    @ManyToOne
+    private User receiver;
+    private long reviewTime;
 
     @OneToOne
-    private User receiver;
-
-    private long reviewTime;
+    @JoinColumn(name="ad_id")
+    private Ad relevantAd;
 
     public Review() {
 
     }
 
-    public Review(String comment, User sender, User receiver) {
+    public Review(String comment) {
         this.comment = comment;
-        this.sender = sender;
-        this.receiver = receiver;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getContent() {
+    public String getComment() {
         return comment;
     }
 
-    public void setContent(String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
@@ -78,6 +77,14 @@ public class Review {
 
     public Timestamp getSendTimestamp() {
         return new Timestamp(reviewTime);
+    }
+
+    public Ad getRelevantAd() {
+        return relevantAd;
+    }
+
+    public void setRelevantAd(Ad relevantAd) {
+        this.relevantAd = relevantAd;
     }
 
     // This is for easier debug.

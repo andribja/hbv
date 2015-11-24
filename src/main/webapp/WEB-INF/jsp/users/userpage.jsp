@@ -18,7 +18,7 @@
         <c:when test="${not empty ads}">
             <ul class="list-group">
                 <c:forEach var="ad" items="${ads}">
-                    <a href="/ads/user/${user_id}" class="list-group-item">
+                    <a href="/ads/user/${user.id}" class="list-group-item">
                         <span class="adlist-item adlist-title">
                             <h4>${ad.name}</h4>
                             <p>${ad.creationTimestamp}</p>

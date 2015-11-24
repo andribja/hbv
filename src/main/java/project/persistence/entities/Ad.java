@@ -27,6 +27,10 @@ public class Ad {
     @JoinColumn(name="author_id")
     private User author;
 
+    @OneToOne
+    @JoinColumn(name="buyer_id")
+    private User buyer;
+
     public Ad() {
         
     }
@@ -42,6 +46,14 @@ public class Ad {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
     public Long getId() {
