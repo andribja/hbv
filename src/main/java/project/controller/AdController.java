@@ -32,7 +32,7 @@ public class AdController {
     public String adViewGet(HttpServletRequest request, Model model){
         HttpSession session = request.getSession(false);
 
-        if(session.getAttribute("user_id") == null) {
+        if(session.getAttribute("user") == null) {
             return "redirect:/login";
         }
 
@@ -44,8 +44,10 @@ public class AdController {
 
     // POST a new ad and return the ad-list view
     @RequestMapping(value = "/new/ad", method = RequestMethod.POST)
-    public String adViewGet(@ModelAttribute("ad") Ad ad, Model model){
+    public String adViewGet(@ModelAttribute("ad") Ad ad, HttpServletRequest request, Model model){
+        HttpSession session = request.getSession(false);
         ad.setCreationTime((new Date()).getTime());
+        ad.setAuthor((User) session.getAttribute("user"));
         adService.save(ad);
 
         model.addAttribute("ads", adService.findAllReverseOrder());
@@ -74,12 +76,12 @@ public class AdController {
         return "ads/ad";
     }
 
-    @RequestMapping(value = "/ads/user/{username}", method = RequestMethod.GET)
-    public String adGetAdsFromUsername(@PathVariable String username, Model model) {
+    @RequestMapping(value = "/ads/user/{author_id}", method = RequestMethod.GET)
+    public String adGetAdsFromUsername(@PathVariable Long author_id, Model model) {
 
-        //model.addAttribute("ad", adService.findByUsername(username));
+        model.addAttribute("ads", adService.findByAuthor_id(author_id));
 
-        return "ads/adlist";
+        return "users/userpage";
     }
 
     @RequestMapping(value = "/ad/delete", method = RequestMethod.POST)

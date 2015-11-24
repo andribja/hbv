@@ -11,7 +11,7 @@
 					        	<li><a href="/">Heim</a></li>
 					            <li><a href="/userpage">Minn aðgangur</a></li>
 					            <li><a href="/users">Notendur</a></li>
-					            <li><a href="/new/user">Skrá notanda</a></li>
+					            <li><a href="/signup">Skrá notanda</a></li>
 					            <li><a href="/ads">Skoða auglýsingar</a></li>
 					            <li><a href="/new/ad">Skrá auglýsingu</a></li>
 					        </div>

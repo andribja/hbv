@@ -56,4 +56,9 @@ public class AdServiceImplementation implements AdService {
     public List<Ad> findByName(String name) {
         return repository.findByName(name);
     }
+
+    @Override
+    public List<Ad> findByAuthor_id(Long user_id) {
+        return repository.findByAuthor_id(user_id);
+    }
 }

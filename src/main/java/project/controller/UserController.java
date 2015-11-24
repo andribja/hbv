@@ -30,8 +30,7 @@ public class UserController {
     // GET view for a single user
     @RequestMapping(value = "/userpage", method=RequestMethod.GET)
     public String userViewGet(Model model) {
-
-        //model.addAttribute("user", userService.findOne("test"));
+       //model.addAttribute("user", userService.findOne("test"));
 
         return "users/user";
     }
@@ -118,8 +117,7 @@ public class UserController {
             System.out.println("Match");
 
             HttpSession session = request.getSession();
-            session.setAttribute("user_id", user.getId());
-            session.setAttribute("username", user.getUsername());
+            session.setAttribute("user", user);
 
             return "redirect:/";
         }
