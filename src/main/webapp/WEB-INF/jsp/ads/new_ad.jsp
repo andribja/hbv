@@ -15,7 +15,7 @@
 
     <sf:form name="form" action="/new/ad" method="post" commandName="ad" role="form">
         <div class="form-group">
-            <label for="name">Titill:</label>
+            <label for="name">Titill</label>
             <sf:input type="text" path="name" id="name" class="form-control"/>
         </div>
         <div class="form-group">

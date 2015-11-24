@@ -3,7 +3,7 @@
 <html>
 	<body>
 		<div class="container-fluid">
-			<div class="col-xs-3" id="sidenav">
+			<div class="col-xs-3 col-md-2" id="sidenav">
 				<nav class="nav affix">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="/">Heim</a></li>
@@ -26,7 +26,7 @@
 					</ul>
 				</nav>
 			</div>
-			<div class="col-xs-9 col-md-8">
+			<div class="col-xs-9 col-lg-8">
 				<jsp:doBody/>
 			</div>
 		</div>
