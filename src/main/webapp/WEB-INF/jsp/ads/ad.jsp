@@ -16,9 +16,20 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">${ad.name}</h3>
+					<a href="/user/${ad.author.id}" class="text-muted">${ad.author.username}</a>
 				</div>
 				<div class="panel-body">
 					<p>${ad.content}</p>
+				</div>
+				<div class="panel-footer">
+					<c:choose>
+						<c:when test="${not empty sessionScope.user}">
+							<a href="/message?user_id=${ad.author.id}&ad_id=${ad.id}">Hefurðu áhuga? Sendu ${ad.author.username} skilaboð</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/login?redirect=true">Hefurðu áhuga? Skráðu þig inn til að senda ${ad.author.username} skilaboð</a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</c:when>

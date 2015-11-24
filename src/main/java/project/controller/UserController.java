@@ -10,6 +10,7 @@ import project.persistence.entities.User;
 import project.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,13 @@ public class UserController {
         return "users/userlist";
     }
 
+    @RequestMapping(value= "/user/{user_id}", method = RequestMethod.GET)
+    public String userViewGet(@PathVariable Long user_id, Model model) {
+
+        model.addAttribute("user", userService.findOne(user_id));
+
+        return "users/user";
+    }
 
     @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
     public String removeUserViewGet(@RequestParam("username") String username, Model model) {
@@ -98,16 +106,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-
+    public String loginGet(HttpServletRequest request, Model model) {
+        try {
+            if (request.getParameter("redirect").equals("true")) {
+                String referrer = request.getHeader("Referer");
+                request.getSession().setAttribute("return_url", referrer);
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
 
         return "login";
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request, Model model) {
+    public String loginPost(HttpServletRequest request, Model model) {
         String username = request.getParameter("username");
         String pass = request.getParameter("password");
+        String return_url = (String) request.getSession().getAttribute("return_url");
+        if(return_url == null) {
+            return_url = "/";
+        }
+
+        if(userService.findByUsername(username) == null) {
+            model.addAttribute("message", "Notandi finnst ekki");
+
+            return "login";
+        }
 
         User user = userService.findByUsername(username);
 
@@ -117,9 +142,10 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            return "redirect:/";
+            return "redirect:" + return_url;
         }
 
+        model.addAttribute("message", "Villa kom upp, reyndu aftur");
         return "login";
     }
 

@@ -11,6 +11,8 @@
 
 <t:wrapper>
     <h2>Innskráning</h2>
+
+    <p>${message}</p>
      <form name="form" action="/login" method="post" role="form">
         <div class="form-group">
             <label for="username">Notandanafn:</label>
