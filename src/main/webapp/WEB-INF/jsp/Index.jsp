@@ -13,18 +13,18 @@
     <div class="jumbotron">
     	<h1>Piece Of Shit System</h1>
     	<c:choose>
-			<c:when test="${empty sessionScope.username}">
+			<c:when test="${empty sessionScope.user.username}">
 	    		<p>Velkomin/n á Piece Of Shit System!</p>
 	    		<br />
 	    	</c:when>
 	    	<c:otherwise>
-	    		<p>Velkomin/n ${sessionScope.username}!</p>
+	    		<p>Velkomin/n ${sessionScope.user.username}!</p>
 	    		<br />
 	    	</c:otherwise>
     	</c:choose>
     	<p>
     		<c:choose>
-	    		<c:when test="${empty sessionScope.username}">
+	    		<c:when test="${empty sessionScope.user.username}">
 	    			<a class="btn btn-default btn-lg" href="/login" role="button">Innskráning</a>
 	    			<a class="btn btn-default btn-lg" href="/signup" role="button">Nýskráning</a>
 	    			<br />

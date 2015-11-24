@@ -92,8 +92,7 @@ public class UserController {
         //else
         //    System.out.println("User exists");
 
-        session.setAttribute("user_id", user.getId());
-        session.setAttribute("username", user.getUsername());
+        session.setAttribute("user", user);
 
         return "redirect:/";
     }
