@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.Ad;
 import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
+import project.persistence.repositories.AdSearch;
 import project.service.AdService;
 import project.service.UserService;
 
@@ -14,12 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AdController {
 
     // Instance Variables
     AdService adService;
+
+    // Inject the UserSearch object
+    @Autowired
+    private AdSearch adSearch;
 
     // Dependency Injection
     @Autowired
@@ -92,5 +98,18 @@ public class AdController {
         adService.delete(adToDelete);
 
         return "redirect:/ads";
+    }
+
+    @RequestMapping("/ads/search")
+    public String adSearch(String q, Model model) {
+        List searchResults = null;
+        try {
+            searchResults = adSearch.search(q);
+        }
+        catch (Exception ex) {
+            System.out.println("Search failure");
+        }
+        model.addAttribute("searchResults", searchResults);
+        return "search";
     }
 }

@@ -58,6 +58,20 @@
 			<version>4.0.3.RELEASE</version>
 		</dependency>
 
+        <!-- Maven artifact identifier for Hibernate Search -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>5.5.0.Final</version>
+        </dependency>
+
+        <!-- Optional: to use JPA 2.1 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.0.4.Final</version>
+        </dependency>
+
     </dependencies>
 
     <build>

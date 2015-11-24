@@ -5,6 +5,11 @@ import org.springframework.data.annotation.Reference;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Store;
 
 /**
  * The class for the Ad.
@@ -12,17 +17,21 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
+@Indexed
 @Table(name = "ads")
 public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Field
     private String name;
+    @Field
     @Column(columnDefinition="text")
     private String content;
     private long creationTime;
 
+    @Field
     @OneToOne
     @JoinColumn(name="author_id")
     private User author;
