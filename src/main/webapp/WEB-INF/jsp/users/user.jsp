@@ -10,6 +10,6 @@
 </t:head>
 
 <t:wrapper>
-	<h2>Notandi: ${user.username}</h2>
+	<h2>Notandi: ${sessionScope.username}</h2>
 	<a href="ads/user/${user.username}">Auglýsingar notanda</a>
 </t:wrapper>

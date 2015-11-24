@@ -10,10 +10,17 @@
 </t:head>
 
 <t:wrapper>
+	<h2>Auglýsing</h2>
 	<c:choose>
 		<c:when test="${not empty ad}">
-			<h2>${ad.name}</h2>
-			<p>${ad.content}</p>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">${ad.name}</h3>
+				</div>
+				<div class="panel-body">
+					<p>${ad.content}</p>
+				</div>
+			</div>
 		</c:when>
 	</c:choose>
 </t:wrapper>
