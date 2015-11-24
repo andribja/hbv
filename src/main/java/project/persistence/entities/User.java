@@ -1,5 +1,7 @@
 package project.persistence.entities;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 
 /**
@@ -16,16 +18,15 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    private String password;
+    private String hash;
 
     public User() {
 
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email) {
         this.username = username;
         this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -52,12 +53,12 @@ public class User {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getHash() {
+        return hash;
     }
 
-    public String getPassword() {
-        return password;
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
     // This is for easier debug.

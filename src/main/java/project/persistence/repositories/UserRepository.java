@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     User findOne(String username);
 
-    List<User> findByUsername(String username);
+    User findOneByUsername(String username);
 
     boolean exists(String username);
 

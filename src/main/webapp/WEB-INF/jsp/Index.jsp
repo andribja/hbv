@@ -11,5 +11,5 @@
 
 <t:wrapper>
     <h2>Piece Of Shit System</h2>
-    <p>Velkomin</p>
+    <p>Velkomin/n ${sessionScope.username}</p>
 </t:wrapper>

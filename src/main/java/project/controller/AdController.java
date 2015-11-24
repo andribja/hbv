@@ -10,6 +10,8 @@ import project.persistence.repositories.AdRepository;
 import project.service.AdService;
 import project.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -27,7 +29,12 @@ public class AdController {
 
     // GET view for creating a new ad
     @RequestMapping(value = "/new/ad", method = RequestMethod.GET)
-    public String adViewGet(Model model){
+    public String adViewGet(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession(false);
+
+        if(session.getAttribute("user_id") == null) {
+            return "redirect:/login";
+        }
 
         model.addAttribute("ad",new Ad());
 
