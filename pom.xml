@@ -15,7 +15,6 @@
     </parent>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -62,7 +61,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-search-orm</artifactId>
-            <version>5.5.0.Final</version>
+            <version>5.5.1.Final</version>
         </dependency>
 
         <!-- Optional: to use JPA 2.1 -->
@@ -70,6 +69,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.4.Final</version>
+        </dependency>
+        <!-- Infinispan integration: -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-infinispan</artifactId>
+            <version>4.1.1.Final</version>
         </dependency>
 
     </dependencies>

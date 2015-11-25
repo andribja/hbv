@@ -16,8 +16,7 @@
 
     <form name="form" action="/ads/search" method="post" role="form">
         <div class="form-group">
-            <label for="username">Notandanafn:</label>
-            <input type="text" name="username" id="username" class="form-control"/>
+            <input type="text" name="query" id="query" class="form-control"/>
         </div>
     </form>
 </t:wrapper>

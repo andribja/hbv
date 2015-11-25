@@ -100,16 +100,23 @@ public class AdController {
         return "redirect:/ads";
     }
 
-    @RequestMapping("/ads/search")
-    public String adSearch(String q, Model model) {
+    @RequestMapping(value = "/ads/search", method = RequestMethod.GET)
+    public String adSearchView(Model model){
+
+        // Return the view
+        return "ads/search";
+    }
+
+    @RequestMapping(value = "/ads/search", method = RequestMethod.POST)
+    public String adSearch(HttpServletRequest request, Model model) {
         List searchResults = null;
         try {
-            searchResults = adSearch.search(q);
+            searchResults = adSearch.search(request.getParameter("query"));
         }
         catch (Exception ex) {
             System.out.println("Search failure");
         }
-        model.addAttribute("searchResults", searchResults);
-        return "search";
+        model.addAttribute("ads", searchResults);
+        return "ads/adlist";
     }
 }

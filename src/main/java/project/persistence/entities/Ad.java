@@ -1,15 +1,17 @@
 package project.persistence.entities;
 
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
+import javax.persistence.Parameter;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Store;
 
 /**
  * The class for the Ad.
@@ -19,19 +21,23 @@ import org.hibernate.search.annotations.Store;
 @Entity
 @Indexed
 @Table(name = "ads")
-public class Ad {
+@AnalyzerDef(name = "customanalyzer",
+        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+        filters = {
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class)
+        })
+public class Ad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Field
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String name;
-    @Field
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     @Column(columnDefinition="text")
     private String content;
     private long creationTime;
 
-    @Field
     @OneToOne
     @JoinColumn(name="author_id")
     private User author;
