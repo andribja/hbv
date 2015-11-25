@@ -19,7 +19,7 @@ public interface MessageService {
 
     List<Message> findBySender(String sender);
 
-    List<Message> findByReceiver(String receiver);
+    List<Message> findByReceiverId(Long receiverId);
 
     void send(Message message);
 

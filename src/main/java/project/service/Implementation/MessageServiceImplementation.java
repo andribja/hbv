@@ -59,8 +59,8 @@ public class MessageServiceImplementation implements MessageService {
     }
 
     @Override
-    public List<Message> findByReceiver(String receiver) {
-        return repository.findByReceiver(receiver);
+    public List<Message> findByReceiverId(Long receiverId) {
+        return repository.findByReceiverId(receiverId);
     }
 
     @Override

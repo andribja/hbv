@@ -53,7 +53,7 @@ public class MessageController {
         model.addAttribute("receiver", receiver);
         model.addAttribute("message", new Message());
 
-        return "messages/message";
+        return "messages/new_message";
     }
 
     @RequestMapping(value = "/message", method = RequestMethod.POST)
@@ -74,4 +74,27 @@ public class MessageController {
 
         return "messages/success";
     }
+
+    @RequestMapping(value = "/messages/my_messages", method = RequestMethod.GET)
+    public String messageListViewGet(HttpServletRequest request, Model model) {
+
+        User user = (User) request.getSession().getAttribute("user");
+
+        model.addAttribute("messages", messageService.findByReceiverId(user.getId()));
+
+        return "messages/messagelist";
+    }
+
+    @RequestMapping(value = "/messages/{id}", method = RequestMethod.GET)
+    public String messageViewGet(HttpServletRequest request, @PathVariable Long id, Model model) {
+
+        Message message = messageService.findOne(id);
+        message.setRead(true);
+        messageService.save(message);
+
+        model.addAttribute("message", message);
+
+        return "messages/message";
+    }
+
 }

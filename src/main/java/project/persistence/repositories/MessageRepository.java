@@ -2,6 +2,7 @@ package project.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import project.persistence.entities.Message;
+import project.persistence.entities.User;
 
 import java.util.List;
 
@@ -30,6 +31,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findBySender(String sender);
 
-    List<Message> findByReceiver(String receiver);
+    List<Message> findByReceiverId(Long receiverId);
 
 }

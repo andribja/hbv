@@ -4,36 +4,37 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <t:head>
-    <title>Skrifa umsögn</title>
+    <title>Skilaboð</title>
 </t:head>
 
 <t:wrapper>
     <h2>Skilaboð</h2>
-    <p>Senda skilaboð til ${receiver.username}</p>
+    <c:choose>
+        <c:when test="${not empty message}">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${message.title}</h3>
+                    <a href="/user/${message.sender.id}" class="text-muted">${message.sender.username}</a>
+                </div>
+                <div class="panel-body">
+                    <p>${message.content}</p>
+                </div>
+                <div class="panel-footer">
+                        <a href="/message?user_id=${message.sender.id}" class="btn btn-default">Svara</a>
+                        <button class="btn btn-default">Eyða</button>
 
-    <sf:form name="form" action="/message" method="post" commandName="message" role="form">
-        <div class="form-group">
-            <label for="title">Efni</label>
-            <sf:input type="text" path="title" id="title" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="content">Ummæli:</label>
-            <sf:textarea type="text" path="content" id="content" rows="10" class="form-control"/>
-        </div>
-
-        <input type="hidden" name="receiver_id" value="${receiver.id}"/>
-
-        <%--<c:choose>--%>
-            <%--<c:when test="${not empty ad}">--%>
-                <%--<input type="hidden" name="ad_id" value="${ad.id}"/>--%>
-            <%--</c:when>--%>
-        <%--</c:choose>--%>
-
-
-
-        <input type="submit" value="Senda" class="btn btn-default"></input>
-    </sf:form>
+                    <%--<c:choose>--%>
+                        <%--<c:when test="${not empty sessionScope.user}">--%>
+                            <%--<a href="/message?user_id=${ad.author.id}&ad_id=${ad.id}">Hefurðu áhuga? Sendu ${ad.author.username} skilaboð</a>--%>
+                        <%--</c:when>--%>
+                        <%--<c:otherwise>--%>
+                            <%--<a href="/login?redirect=true">Hefurðu áhuga? Skráðu þig inn til að senda ${ad.author.username} skilaboð</a>--%>
+                        <%--</c:otherwise>--%>
+                    <%--</c:choose>--%>
+                </div>
+            </div>
+        </c:when>
+    </c:choose>
 </t:wrapper>
