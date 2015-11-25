@@ -12,7 +12,7 @@ import java.util.Date;
  * Be sure to annotate any entities you have with the @Entity annotation.
  */
 @Entity
-@Table(name = "reviews")
+@Table(name = "reviews", uniqueConstraints = @UniqueConstraint(columnNames = {"sender_id", "ad_id"}))
 public class Review {
 
     @Id
@@ -21,34 +21,34 @@ public class Review {
 
     @Column(columnDefinition="text")
     private String comment;
-
-    @OneToOne
+    @ManyToOne
     private User sender;
+    @ManyToOne
+    private User receiver;
+    private long reviewTime;
+    private double rating;
 
     @OneToOne
-    private User receiver;
-
-    private long reviewTime;
+    @JoinColumn(name="ad_id")
+    private Ad relevantAd;
 
     public Review() {
 
     }
 
-    public Review(String comment, User sender, User receiver) {
+    public Review(String comment) {
         this.comment = comment;
-        this.sender = sender;
-        this.receiver = receiver;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getContent() {
+    public String getComment() {
         return comment;
     }
 
-    public void setContent(String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
@@ -68,16 +68,32 @@ public class Review {
         this.receiver = receiver;
     }
 
-    public long getSendTime() {
+    public long getReviewTime() {
         return reviewTime;
     }
 
-    public void setSendTime(long reviewTime) {
+    public void setReviewTime(long reviewTime) {
         this.reviewTime = reviewTime;
     }
 
-    public Timestamp getSendTimestamp() {
+    public Timestamp getReviewTimestamp() {
         return new Timestamp(reviewTime);
+    }
+
+    public Ad getRelevantAd() {
+        return relevantAd;
+    }
+
+    public void setRelevantAd(Ad relevantAd) {
+        this.relevantAd = relevantAd;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     // This is for easier debug.
@@ -85,6 +101,6 @@ public class Review {
     public String toString() {
         return String.format(
                 "Review = [comment=%s, sender=%s, receiver=%s, created=%s]",
-                comment, sender, receiver, this.getSendTimestamp());
+                comment, sender, receiver, this.getReviewTimestamp());
     }
 }

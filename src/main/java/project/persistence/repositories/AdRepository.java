@@ -1,6 +1,8 @@
 package project.persistence.repositories;
 
+//import org.jboss.logging.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.Ad;
 
 import java.util.List;
@@ -31,4 +33,15 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     List<Ad> findByName(String name);
 
     List<Ad> findByAuthor_id(Long user_id);
+
+
+    @Query(value = "SELECT ad FROM Ad ad " +
+                        "WHERE (ad.buyer.id IS NOT NULL AND (ad.buyer.id=?1 OR ad.author.id=?1)) AND ad.id NOT IN " +
+                            "(SELECT r.relevantAd.id FROM Review r WHERE (r.sender.id=?1))")
+    List<Ad> findAllUnreviewedBy(Long user_id);
+
+    @Query(value = "SELECT ad FROM Ad ad WHERE ad.buyer IS NOT NULL")
+    List<Ad> findAllWithoutBuyer();
+
+
 }

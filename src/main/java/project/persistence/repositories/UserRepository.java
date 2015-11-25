@@ -1,6 +1,7 @@
 package project.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.User;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
  *
  */
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     User save(User User);
 
@@ -20,11 +21,12 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     List<User> findAll();
 
-    User findOne(String username);
+    User findOne(Long id);
 
     User findOneByUsername(String username);
 
-    boolean exists(String username);
+    boolean exists(Long id);
 
-
+    @Query(value = "SELECT AVG(r.rating) FROM Review r WHERE r.receiver.id=?1")
+    double getRatingFor(Long id);
 }

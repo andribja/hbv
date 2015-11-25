@@ -19,6 +19,8 @@ public class User {
     private String username;
     private String email;
     private String hash;
+    private double rating;
+    private int numRatings;
 
     public User() {
 
@@ -27,6 +29,9 @@ public class User {
     public User(String username, String email) {
         this.username = username;
         this.email = email;
+
+        rating = 0;
+        numRatings = 0;
     }
 
     public Long getId() {
@@ -61,11 +66,24 @@ public class User {
         this.hash = hash;
     }
 
+    public void giveRating(double rating) {
+
+        this.rating = (this.rating*numRatings + rating) / ++numRatings;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
     // This is for easier debug.
     @Override
     public String toString() {
         return String.format(
-                "User = [username=%s, email=%s]",
-                username, email);
+                "User = [username=%s, email=%s, number of ratings=%s, rating=%s]",
+                username, email, numRatings, rating);
     }
 }

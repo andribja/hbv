@@ -12,29 +12,33 @@
 <t:wrapper>
     <h2>Auglýsingar</h2>
 
-    <p>Þínar auglýsingar</p>
+    <p>Auglýsingar notanda: ${user.username}</p>
 
     <c:choose>
         <c:when test="${not empty ads}">
-            <ul class="list-group">
                 <c:forEach var="ad" items="${ads}">
-                    <a href="/ads/user/${user_id}" class="list-group-item">
-                        <span class="adlist-item adlist-title">
-                            <h4>${ad.name}</h4>
-                            <p>${ad.creationTimestamp}</p>
-                        </span>
-                        <span class="adlist-item">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="/ads/${ad.id}">
+                                <h3 class="panel-title">${ad.name}</h3>
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <p id="timestamp" class="text-muted">${ad.creationTimestamp}</p>
                             <p>${ad.content}</p>
-                        </span>
-
-                        <span class="adlist-item float-right">
-                            <form action="/ad/delete?id=${ad.id}" method="post" commandName="ad" role="form">
-                                <input type="submit" value="Eyða" class="btn btn-default"></input>
-                            </form>
-                        </span>
-                    </a>
+                            <c:choose>
+                            <c:when test="${sessionScope.user.id eq ad.author.id}">
+                                <span class="adlist-item float-right">
+                                    <form method="post" commandName="ad" role="form">
+                                        <input type="submit" formaction="/ad/delete?id=${ad.id}" value="Eyða" class="btn btn-default"></input>
+                                        <input type="submit" formaction="/ad/edit/${ad.id}" formmethod="get" value="Breyta" class="btn btn-default"></input>
+                                    </form>
+                                </span>
+                            </c:when>
+                        </c:choose>
+                        </div>
+                    </div>
                 </c:forEach>
-            </ul>
         </c:when>
     </c:choose>
 </t:wrapper>

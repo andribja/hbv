@@ -48,8 +48,8 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User findOne(String username) {
-        return repository.findOne(username);
+    public User findOne(Long id) {
+        return repository.findOne(id);
     }
 
 
@@ -60,7 +60,12 @@ public class UserServiceImplementation implements UserService {
 
 
     @Override
-    public boolean exists(String username) {
-        return repository.exists(username);
+    public boolean exists(Long id) {
+        return repository.exists(id);
+    }
+
+    @Override
+    public double getRatingFor(Long id) {
+        return repository.getRatingFor(id);
     }
 }

@@ -54,12 +54,12 @@ public class ReviewServiceImplementation implements ReviewService {
     }
 
     @Override
-    public List<Review> findBySender(String sender) {
-        return repository.findBySender(sender);
+    public List<Review> findBySender(Long senderId) {
+        return repository.findBySender(senderId);
     }
 
     @Override
-    public List<Review> findByReceiver(String receiver) {
-        return repository.findByReceiver(receiver);
+    public List<Review> findByReceiverId(Long receiverId) {
+        return repository.findByReceiverId(receiverId);
     }
 }

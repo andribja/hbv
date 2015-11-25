@@ -13,6 +13,7 @@ import project.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Null;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ public class AdController {
 
     // Instance Variables
     AdService adService;
+    UserService userService;
 
     // Inject the UserSearch object
     @Autowired
@@ -29,8 +31,9 @@ public class AdController {
 
     // Dependency Injection
     @Autowired
-    public AdController(AdService adService) {
+    public AdController(AdService adService, UserService userService) {
         this.adService = adService;
+        this.userService = userService;
     }
 
     // GET view for creating a new ad
@@ -86,6 +89,20 @@ public class AdController {
     public String adGetAdsFromUsername(@PathVariable Long author_id, Model model) {
 
         model.addAttribute("ads", adService.findByAuthor_id(author_id));
+        model.addAttribute("user", userService.findOne(author_id));
+
+        return "users/userpage";
+    }
+
+    @RequestMapping(value = "/ads/my_ads", method = RequestMethod.GET)
+    public String currentUserAdsGet(HttpServletRequest request, Model model) {
+
+        if(request.getSession().getAttribute("user") == null) {
+            return "redirect:/";
+        }
+
+        User author = (User) request.getSession().getAttribute("user");
+        model.addAttribute("ads", adService.findByAuthor_id(author.getId()));
 
         return "users/userpage";
     }
@@ -118,5 +135,35 @@ public class AdController {
         }
         model.addAttribute("ads", searchResults);
         return "ads/adlist";
+    }
+
+    @RequestMapping(value="/ad/edit/{ad_id}", method = RequestMethod.GET)
+    public String editAdViewGet(@PathVariable Long ad_id, Model model) {
+
+        model.addAttribute("ad", adService.findOne(ad_id));
+        model.addAttribute("users", userService.findAll());
+
+        return "ads/edit";
+    }
+
+    @RequestMapping(value = "/ad/edit/{ad_id}", method = RequestMethod.POST)
+    public String editAdViewPost(HttpServletRequest request, @PathVariable Long ad_id, Model model) {
+
+        Ad ad = adService.findOne(ad_id);
+        ad.setName(request.getParameter("name"));
+        ad.setContent(request.getParameter("content"));
+        ad.setUpdatedTime((new Date()).getTime());
+        try{
+            User buyer = userService.findOne(Long.parseLong(request.getParameter("buyer")));
+            ad.setBuyer(buyer);
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+
+        adService.save(ad);
+
+        return "redirect:/ads/my_ads";
     }
 }

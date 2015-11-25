@@ -5,6 +5,7 @@ import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
+import org.mockito.internal.verification.Times;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
@@ -37,10 +38,15 @@ public class Ad implements Serializable {
     @Column(columnDefinition="text")
     private String content;
     private long creationTime;
+    private long updatedTime;
 
     @OneToOne
     @JoinColumn(name="author_id")
     private User author;
+
+    @OneToOne
+    @JoinColumn(name="buyer_id")
+    private User buyer;
 
     public Ad() {
         
@@ -57,6 +63,14 @@ public class Ad implements Serializable {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
     public Long getId() {
@@ -91,8 +105,20 @@ public class Ad implements Serializable {
         creationTime = time;
     }
 
+    public long getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(long updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
     public Timestamp getCreationTimestamp() {
         return new Timestamp(creationTime);
+    }
+
+    public Timestamp getUpdatedTimestamp() {
+        return new Timestamp(updatedTime);
     }
 
     // This is for easier debug.

@@ -11,30 +11,22 @@
 
 <t:wrapper>
     <h2>Auglýsingar</h2>
-
-    <p>Hér eru auglýsingarnar</p>
-
     <c:choose>
         <c:when test="${not empty ads}">
-            <ul class="list-group">
-                <c:forEach var="ad" items="${ads}">
-                    <a href="/ads/${ad.id}" class="list-group-item">
-                        <span class="adlist-item adlist-title">
-                            <h4>${ad.name}</h4>
-                            <p>${ad.creationTimestamp}</p>
-                        </span>
-                        <span class="adlist-item">
-                            <p>${ad.content}</p>
-                        </span>
-
-                        <span class="adlist-item float-right">
-                            <form action="/ad/delete?id=${ad.id}" method="post" commandName="ad" role="form">
-                            <input type="submit" value="Eyða" class="btn btn-default"></input>
-                            </form>
-                        </span>
-                    </a>
-                </c:forEach>
-            </ul>
+            <c:forEach var="ad" items="${ads}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="/ads/${ad.id}">
+                            <h3 class="panel-title">${ad.name}</h3>
+                            <a href="/users/${ad.author.id}" class="text-muted">${ad.author.username}</a>
+                        </a>    
+                    </div>
+                    <div class="panel-body">
+                        <p id="timestamp" class="text-muted">${ad.creationTimestamp}</p>
+                        <p>${ad.content}</p>
+                    </div>
+                </div>
+            </c:forEach>
         </c:when>
     </c:choose>
 </t:wrapper>

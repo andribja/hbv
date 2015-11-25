@@ -11,11 +11,20 @@
 
 <t:wrapper>
 	<h2>Notendur</h2>
-	<p>Þetta eru allir notendurnir</p>
 	<c:choose>
 		<c:when test="${not empty users}">
 			<c:forEach var="user" items="${users}">
-                <a href="/users/${user.username}" class="list-group-item">
+			<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="/users/${user.id}">
+                            <h3 class="panel-title">${user.username}</h3>
+                        </a>    
+                    </div>
+                    <div class="panel-body">
+                        <p>Email: ${user.email}</p>
+                    </div>
+            </div>
+                <!-- <a href="/users/${user.username}" class="list-group-item">
 					<span class="adlist-item">
 						<h4>${user.username}</h4>
 						<p>${user.email}</p>
@@ -26,7 +35,7 @@
 							<input type="submit" value="Eyða" class="btn btn-default"></input>
 						</form>
 					</span>
-                </a>
+                </a> -->
             </c:forEach>
 		</c:when>
 	</c:choose>
