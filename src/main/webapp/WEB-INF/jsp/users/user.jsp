@@ -11,8 +11,8 @@
 
 <t:wrapper>
 	<h2>Notandi: ${user.username}</h2>
-	<a href="/ads/my_ads">Mínar auglýsingar</a>
-	<a href="/messages/my_messages">Mín skilaboð</a>
+    <a class="btn btn-default" href="/ads/my_ads" role="button">Mínar auglýsingar</a>
+    <a class="btn btn-default" href="/messages/my_messages" role="button">Mín skilaboð</a>
 
 	<c:choose>
 		<c:when test="${not empty ads}">
