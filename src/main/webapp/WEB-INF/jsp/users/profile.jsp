@@ -11,12 +11,12 @@
 
 <t:wrapper>
     <h2>Notandi: ${user.username}</h2>
-    <p>Hér er public prófæll notandans ${user.username}</p>
     <a class="btn btn-default" href="/ads/user/${user.id}" role="button">Auglýsingar notanda</a>
     <a class="btn btn-default" href="/message?user_id=${user.id}" role="button">Senda skilaboð</a>
     <c:choose>
 		<c:when test="${not empty reviews}">
 			<h3>Umsagnir um ${user.username}</h3>
+			<p>Meðaleinkunn ${user.rating}</p>
 			<c:forEach var="review" items="${reviews}">
 				<div class="panel panel-default">
 					<div class="panel-heading">

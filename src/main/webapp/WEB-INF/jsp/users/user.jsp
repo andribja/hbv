@@ -4,6 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:head>
     <title>Upplýsingar um notanda</title>
@@ -12,7 +13,7 @@
 <t:wrapper>
 	<h2>Notandi: ${user.username}</h2>
     <a class="btn btn-default" href="/ads/my_ads" role="button">Mínar auglýsingar</a>
-    <a class="btn btn-default" href="/messages/my_messages" role="button">Mín skilaboð</a>
+    <a class="btn btn-default" href="/messages/my_messages" role="button">Mín skilaboð(${fn:length(unread)})</a>
 
 	<c:choose>
 		<c:when test="${not empty ads}">
