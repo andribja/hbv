@@ -59,8 +59,7 @@ html, body {
 	height: 100%;
 }
 
-.panel {
-	border-width: 1px;
+.panel:not(.panel-footer) {
 	border-bottom-width: 3px;
 }
 
@@ -82,4 +81,13 @@ label:not(#remember-me-label) {
 
 #sidenav {
 	padding: 0;
+}
+
+.rating {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.panel-footer {
+	padding: 10px 0 1px 10px;
 }

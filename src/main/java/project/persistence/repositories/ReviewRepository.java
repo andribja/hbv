@@ -31,6 +31,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     List<Review> findBySender(Long senderId);
 
-    List<Review> findByReceiver(Long receiverId);
+    List<Review> findByReceiverId(Long receiverId);
 
 }
