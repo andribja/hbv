@@ -18,5 +18,5 @@ public interface ReviewService {
 
     List<Review> findBySender(Long senderId);
 
-    List<Review> findByReceiver(Long receiverId);
+    List<Review> findByReceiverId(Long receiverId);
 }

@@ -9,7 +9,7 @@
 						<li><a href="/">Heim</a></li>
 						<c:choose>
 							<c:when test="${empty sessionScope.user}">
-								<li><a href="/search">Leita</a></li>
+								<li><a href="/ads/search">Leita</a></li>
 								<li><a href="/ads">Skoða auglýsingar</a></li>
 								<li><a href="/login">Innskráning</a></li>
 								<li><a href="/signup">Nýskráning</a></li>
@@ -18,7 +18,7 @@
 								<li><a href="/userpage">${sessionScope.user.username}</a></li>
 								<li><a href="/users">Notendur</a></li>
 								<li><a href="/ads">Skoða auglýsingar</a></li>
-								<li><a href="/search">Leita</a></li>
+								<li><a href="/ads/search">Leita</a></li>
 								<li><a href="/new/ad">Skrá auglýsingu</a></li>
 								<li><a href="/logout">Útskráning</a></li>
 							</c:otherwise>

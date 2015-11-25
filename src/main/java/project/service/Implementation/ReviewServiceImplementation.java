@@ -59,7 +59,7 @@ public class ReviewServiceImplementation implements ReviewService {
     }
 
     @Override
-    public List<Review> findByReceiver(Long receiverId) {
-        return repository.findByReceiver(receiverId);
+    public List<Review> findByReceiverId(Long receiverId) {
+        return repository.findByReceiverId(receiverId);
     }
 }

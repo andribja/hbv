@@ -6,13 +6,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import project.persistence.entities.User;
 import project.service.AdService;
+import project.service.ReviewService;
 import project.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +24,16 @@ public class UserController {
 
     UserService userService;
     AdService adService;
+    ReviewService reviewService;
+    
     //Facebook facebook;
 
     @Autowired
-    public UserController(UserService userService, AdService adService) {
+    public UserController(UserService userService, AdService adService, ReviewService reviewService) {
         this.userService = userService;
         this.adService = adService;
+        this.reviewService = reviewService;
+        
         //this.facebook = facebook;
     }
 
@@ -67,6 +74,7 @@ public class UserController {
         }
 
         model.addAttribute("user", userService.findOne(user_id));
+        model.addAttribute("reviews", reviewService.findByReceiverId(user_id));
 
         return "users/profile";
     }

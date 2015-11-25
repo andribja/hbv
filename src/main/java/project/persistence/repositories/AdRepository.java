@@ -1,6 +1,6 @@
 package project.persistence.repositories;
 
-import org.jboss.logging.annotations.Param;
+//import org.jboss.logging.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.Ad;
