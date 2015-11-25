@@ -9,6 +9,7 @@ import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
 import project.persistence.repositories.AdSearch;
 import project.service.AdService;
+import project.service.MessageService;
 import project.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ public class AdController {
     // Instance Variables
     AdService adService;
     UserService userService;
+    MessageService messageService;
 
     // Inject the UserSearch object
     @Autowired
@@ -31,9 +33,10 @@ public class AdController {
 
     // Dependency Injection
     @Autowired
-    public AdController(AdService adService, UserService userService) {
+    public AdController(AdService adService, UserService userService, MessageService messageService) {
         this.adService = adService;
         this.userService = userService;
+        this.messageService = messageService;
     }
 
     // GET view for creating a new ad
@@ -141,7 +144,7 @@ public class AdController {
     public String editAdViewGet(@PathVariable Long ad_id, Model model) {
 
         model.addAttribute("ad", adService.findOne(ad_id));
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", messageService.findAllInterested(ad_id));
 
         return "ads/edit";
     }

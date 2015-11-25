@@ -36,9 +36,8 @@ public class MessageController {
     public String messageViewGet(HttpServletRequest request, Model model) {
 
         User receiver = userService.findOne(Long.parseLong(request.getParameter("user_id")));
-//        Ad relevantAd = new Ad();
+        Ad relevantAd = new Ad();
 
-        /*
         try {
             relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
         } catch(Exception e) {
@@ -48,7 +47,6 @@ public class MessageController {
         if(relevantAd.getId() != null) {
             model.addAttribute("ad", relevantAd);
         }
-        */
 
         model.addAttribute("receiver", receiver);
         model.addAttribute("message", new Message());
@@ -67,6 +65,13 @@ public class MessageController {
         message.setSender(sender);
         message.setReceiver(receiver);
         message.setSendTime((new Date()).getTime());
+
+        try{
+            Ad relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
+            message.setRelevantAd(relevantAd);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         messageService.save(message);
 

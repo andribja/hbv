@@ -3,6 +3,7 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Message;
+import project.persistence.entities.User;
 import project.persistence.repositories.MessageRepository;
 import project.service.MessageService;
 import project.service.MessageService;
@@ -67,4 +68,10 @@ public class MessageServiceImplementation implements MessageService {
     public void send(Message message) {
 
     }
+
+    @Override
+    public List<User> findAllInterested(Long adId) {
+        return repository.findAllInterested(adId);
+    }
 }
+

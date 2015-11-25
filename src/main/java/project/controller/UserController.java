@@ -51,7 +51,7 @@ public class UserController {
     // GET view for user-list
     @RequestMapping(value = "/users", method=RequestMethod.GET)
     public String userlistViewGet(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
 
         if(session.getAttribute("user") == null) {
             System.out.println("denied");
@@ -64,7 +64,14 @@ public class UserController {
     }
 
     @RequestMapping(value= "/users/{user_id}", method = RequestMethod.GET)
-    public String userViewGet(@PathVariable Long user_id, Model model) {
+    public String userViewGet(HttpServletRequest request, @PathVariable Long user_id, Model model) {
+        HttpSession session = request.getSession();
+
+        if(session.getAttribute("user") == null) {
+            System.out.println("denied");
+
+            return "redirect:/login?redirect=true";
+        }
 
         model.addAttribute("user", userService.findOne(user_id));
         model.addAttribute("reviews", reviewService.findByReceiverId(user_id));
