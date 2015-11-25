@@ -48,7 +48,7 @@ public class UserController {
 
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("ads", adService.findAllUnreviewedBy(user.getId()));
-        model.addAttribute("unread", messageService.getUnreadMessages(user.getId()));
+        //model.addAttribute("unread", messageService.getUnreadMessages(user.getId()));
 
         return "users/user";
     }
