@@ -16,7 +16,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">${ad.name}</h3>
-					<a href="/user/${ad.author.id}" class="text-muted">${ad.author.username}</a>
+					<a href="/users/${ad.author.id}" class="text-muted">${ad.author.username}</a>
 				</div>
 				<div class="panel-body">
 					<p>${ad.content}</p>

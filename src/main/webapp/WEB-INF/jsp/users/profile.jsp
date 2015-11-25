@@ -11,7 +11,7 @@
 
 <t:wrapper>
     <h2>Notandi: ${user.username}</h2>
-    <p>Hér er public prófællinn hans ${user.username}</p>
+    <p>Hér er public prófæll notandans ${user.username}</p>
     <a href="/ads/user/${user.id}">Auglýsingar notanda</a>
     <a href="/"
 </t:wrapper>
