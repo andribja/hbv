@@ -18,9 +18,11 @@
                     <div class="panel-heading">
                         <a href="/messages/${message.id}">
                             <h3 class="panel-title">${message.title}</h3>
+                            <a href="/users/${message.sender.id}" class="text-muted">${message.sender.username}</a>
                         </a>
                     </div>
                     <div class="panel-body">
+                        <p id="timestamp" class="text-muted">${message.sendTimestamp}</p>
                         <p>${message.content}</p>
                     </div>
                 </div>

@@ -87,7 +87,3 @@ label:not(#remember-me-label) {
 	font-size: 12px;
 	font-weight: bold;
 }
-
-.panel-footer {
-	padding: 10px 0 1px 10px;
-}
