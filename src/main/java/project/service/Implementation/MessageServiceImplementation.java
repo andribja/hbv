@@ -73,5 +73,15 @@ public class MessageServiceImplementation implements MessageService {
     public List<User> findAllInterested(Long adId) {
         return repository.findAllInterested(adId);
     }
+
+    @Override
+    public User findOriginalMessageUser(Long adId) {
+        return repository.findOriginalMessageUser(adId);
+    }
+
+    @Override
+    public List<Message> getUnreadMessages(Long userId) {
+        return repository.getUnreadMessagesByUserId(userId);
+    }
 }
 

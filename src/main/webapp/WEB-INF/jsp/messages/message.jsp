@@ -22,7 +22,7 @@
                     <p>${message.content}</p>
                 </div>
                 <div class="panel-footer">
-                        <a href="/message?user_id=${message.sender.id}" class="btn btn-default">Svara</a>
+                        <a href="/message?user_id=${message.sender.id}&ad_id=${message.relevantAd.id}" class="btn btn-default">Svara</a>
                         <button class="btn btn-default">Eyða</button>
 
                     <%--<c:choose>--%>

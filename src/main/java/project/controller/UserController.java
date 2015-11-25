@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import project.persistence.entities.Message;
 import project.persistence.entities.User;
 import project.service.AdService;
+import project.service.MessageService;
 import project.service.ReviewService;
 import project.service.UserService;
 
@@ -25,14 +27,16 @@ public class UserController {
     UserService userService;
     AdService adService;
     ReviewService reviewService;
+    MessageService messageService;
     
     //Facebook facebook;
 
     @Autowired
-    public UserController(UserService userService, AdService adService, ReviewService reviewService) {
+    public UserController(UserService userService, AdService adService, ReviewService reviewService, MessageService messageService) {
         this.userService = userService;
         this.adService = adService;
         this.reviewService = reviewService;
+        this.messageService = messageService;
         
         //this.facebook = facebook;
     }
@@ -44,6 +48,7 @@ public class UserController {
 
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("ads", adService.findAllUnreviewedBy(user.getId()));
+        model.addAttribute("unread", messageService.getUnreadMessages(user.getId()));
 
         return "users/user";
     }

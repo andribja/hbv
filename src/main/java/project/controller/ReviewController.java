@@ -10,6 +10,7 @@ import project.persistence.entities.Review;
 import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
 import project.service.AdService;
+import project.service.MessageService;
 import project.service.ReviewService;
 import project.service.UserService;
 import sun.net.httpserver.HttpsServerImpl;
@@ -26,13 +27,15 @@ public class ReviewController {
     ReviewService reviewService;
     UserService userService;
     AdService adService;
+    MessageService messageService;
 
     // Dependency Injection
     @Autowired
-    public ReviewController(ReviewService reviewService, UserService userService, AdService adService) {
+    public ReviewController(ReviewService reviewService, UserService userService, AdService adService, MessageService messageService) {
         this.reviewService = reviewService;
         this.userService = userService;
         this.adService = adService;
+        this.messageService = messageService;
     }
 
     // GET á    foo.bar/review?ad_id=foo
@@ -41,17 +44,15 @@ public class ReviewController {
         HttpSession session = request.getSession(false);
 
         User sender = (User) session.getAttribute("user");
-        User receiver = new User();
         Ad relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
+        User receiver = new User();
 
-        if(relevantAd.getBuyer() == null) {
-            return "redirect:/";
-        } else if (sender.getId() == relevantAd.getBuyer().getId()) {
-            // Buyer reviews seller
+        if(sender.getId() == relevantAd.getAuthor().getId()) {
+            // Reviewer is the author
+            // FINNA HINN USERINN
+            receiver = messageService.findOriginalMessageUser(relevantAd.getId());
+        } else {
             receiver = relevantAd.getAuthor();
-        } else if(sender.getId() == relevantAd.getAuthor().getId()) {
-            //Seller reviews buyer
-            receiver = relevantAd.getBuyer();
         }
 
         model.addAttribute("receiver", receiver);
@@ -73,10 +74,6 @@ public class ReviewController {
         receiver.giveRating(rating);
 
         System.out.println(receiver);
-
-        if(relevantAd.getBuyer() == null) {
-            return "redirect:/";
-        }
 
         review.setSender(sender);
         review.setReceiver(receiver);

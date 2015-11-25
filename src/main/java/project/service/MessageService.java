@@ -25,4 +25,8 @@ public interface MessageService {
 
     List<User> findAllInterested(Long adId);
 
+    User findOriginalMessageUser(Long adId);
+
+    List<Message> getUnreadMessages(Long userId);
+
 }

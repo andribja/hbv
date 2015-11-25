@@ -156,14 +156,6 @@ public class AdController {
         ad.setName(request.getParameter("name"));
         ad.setContent(request.getParameter("content"));
         ad.setUpdatedTime((new Date()).getTime());
-        try{
-            User buyer = userService.findOne(Long.parseLong(request.getParameter("buyer")));
-            ad.setBuyer(buyer);
-        } catch (NullPointerException e) {
-            System.out.println(e);
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
 
         adService.save(ad);
 

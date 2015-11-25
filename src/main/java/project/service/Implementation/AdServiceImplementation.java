@@ -7,6 +7,7 @@ import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
 import project.service.AdService;
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 
@@ -64,16 +65,19 @@ public class AdServiceImplementation implements AdService {
     }
 
     @Override
-    public List<Ad> findAllActive() {
-        return repository.findAllWithoutBuyer();
-    }
-
-    @Override
     public List<Ad> findAllUnreviewedBy(Long user_id) {
         System.out.println("watup " + user_id);
-//        return repository.findAll();
-        List<Ad> foo = repository.findAllUnreviewedBy(user_id);
+
+        List<BigInteger> foo = repository.findAllUnreviewedIds(user_id);
         System.out.println("Result: " + foo);
-        return foo;
+
+        List<Ad> ads = repository.findAll();
+        ads.clear();
+
+        for(BigInteger l : foo) {
+            ads.add(repository.getOne(l.longValue()));
+        }
+
+        return ads;
     }
 }

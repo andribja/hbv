@@ -36,4 +36,12 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query("SELECT m.sender FROM Message m WHERE m.relevantAd.id=?1")
     List<User> findAllInterested(Long adId);
+
+    // SELECT sender_id from messages where ad_id=1 order by id LIMIT 1;
+    @Query(value = "SELECT m.sender FROM Message m WHERE m.relevantAd.id=?1 AND m.id=(SELECT MIN(m1.id) FROM Message m1 WHERE m1.relevantAd.id=?1)")
+    //@Query(value = "SELECT sender_id from messages where ad_id=1 AND id=(SELECT MIN(id) from messages WHERE ad_id=1)", nativeQuery = true)
+    User findOriginalMessageUser(Long adId);
+
+    @Query(value = "SELECT m FROM Message m WHERE m.read=false")
+    List<Message> getUnreadMessagesByUserId(Long userId);
 }
