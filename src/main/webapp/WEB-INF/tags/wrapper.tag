@@ -15,7 +15,7 @@
 								<li><a href="/signup">Nýskráning</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="/userpage">Minn aðgangur</a></li>
+								<li><a href="/userpage">${sessionScope.user.username}</a></li>
 								<li><a href="/users">Notendur</a></li>
 								<li><a href="/ads">Skoða auglýsingar</a></li>
 								<li><a href="/search">Leita</a></li>

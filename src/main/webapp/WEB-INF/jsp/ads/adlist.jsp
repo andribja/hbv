@@ -18,18 +18,13 @@
                     <div class="panel-heading">
                         <a href="/ads/${ad.id}">
                             <h3 class="panel-title">${ad.name}</h3>
-                            <a href="/user/${ad.author.id}" class="text-muted">${ad.author.username}</a>
+                            <a href="/users/${ad.author.id}" class="text-muted">${ad.author.username}</a>
                         </a>    
                     </div>
                     <div class="panel-body">
                         <p id="timestamp" class="text-muted">${ad.creationTimestamp}</p>
                         <p>${ad.content}</p>
                     </div>
-                    <!-- <span class="adlist-item float-right">
-                        <form action="/ad/delete?id=${ad.id}" method="post" commandName="ad" role="form">
-                        <input type="submit" value="Eyða" class="btn btn-default"></input>
-                        </form>
-                    </span> -->
                 </div>
             </c:forEach>
         </c:when>
