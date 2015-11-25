@@ -46,8 +46,22 @@ public class UserController {
     public String userViewGet(HttpServletRequest request, Model model) {
        //model.addAttribute("user", userService.findOne("test"));
 
-        User user = (User) request.getSession().getAttribute("user");
-        model.addAttribute("ads", adService.findAllUnreviewedBy(user.getId()));
+        User user = new User();
+
+        try {
+            user = (User) request.getSession().getAttribute("user");
+        } catch (Exception e) {
+            System.out.println("No user logged in");
+
+            return "redirect:/";
+        }
+
+        try {
+            model.addAttribute("ads", adService.findAllUnreviewedBy(user.getId()));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         model.addAttribute("unread", messageService.getUnreadMessages(user.getId()));
 
         return "users/user";
