@@ -26,17 +26,19 @@
                         <div class="panel-body">
                             <p id="timestamp" class="text-muted">${ad.creationTimestamp}</p>
                             <p>${ad.content}</p>
-                            <c:choose>
-                            <c:when test="${sessionScope.user.id eq ad.author.id}">
-                                <span class="adlist-item float-right">
-                                    <form method="post" commandName="ad" role="form">
-                                        <input type="submit" formaction="/ad/delete?id=${ad.id}" value="Eyða" class="btn btn-default"></input>
-                                        <input type="submit" formaction="/ad/edit/${ad.id}" formmethod="get" value="Breyta" class="btn btn-default"></input>
-                                    </form>
-                                </span>
-                            </c:when>
-                        </c:choose>
                         </div>
+                            <c:choose>
+                                <c:when test="${sessionScope.user.id eq ad.author.id}">
+                                    <div class="panel-footer">
+                                        <span class="adlist-item float-right">
+                                            <form method="post" commandName="ad" role="form">
+                                                <input type="submit" formaction="/ad/delete?id=${ad.id}" value="Eyða" class="btn btn-default"></input>
+                                                <input type="submit" formaction="/ad/edit/${ad.id}" formmethod="get" value="Breyta" class="btn btn-default"></input>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </c:when>
+                            </c:choose>
                     </div>
                 </c:forEach>
         </c:when>

@@ -12,10 +12,9 @@
 <t:wrapper>
     <h2>Leita að auglýsingum</h2>
 
-    <p>Leit:</p>
-
     <form name="form" action="/ads/search" method="post" role="form">
         <div class="form-group">
+            <label for="query">Leit</label>
             <input type="text" name="query" id="query" class="form-control"/>
         </div>
     </form>
