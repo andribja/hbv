@@ -41,6 +41,7 @@ nav {
 
 .nav-pills li a:hover {
 	color: #2E78DC;
+	background-color: white;
 	border-radius: 0;
 }
 
