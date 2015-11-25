@@ -31,22 +31,15 @@ nav {
 }
 
 .nav-pills {
-	padding-left: 5px;
-	border: 0px solid #444;
-	border-left-width: 3px;
-	border-radius: 5px;
-
 }
 
 .nav-pills a {
-	/*color: rgba(255, 255, 255, 0.94);*/
-	color: #444;
-	padding-right: 10px;
+	color: rgba(255, 255, 255, 0.94);
 }
 
 .nav-pills li a:hover {
 	color: #444;
-	/*background-color: rgba(255, 255, 255, 0.94);*/
+	border-radius: 0;
 }
 
 
@@ -62,7 +55,7 @@ html, body {
 
 .nav {
 	margin: 0 auto;
-	/*background-color: #444;*/
+	background-color: #444;
 	height: 100%;
 }
 
@@ -75,7 +68,7 @@ label:not(#remember-me-label) {
 	color: rgba(255, 255, 255, 0.94);
 	background-color: #444;
 	border-radius: 5px;
-	padding: 5px 94% 5px 10px;
+	padding: 5px 98% 5px 10px;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	margin-bottom: 0;
@@ -85,4 +78,8 @@ label:not(#remember-me-label) {
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
 	border-bottom-width: 3px;
+}
+
+#sidenav {
+	padding: 0;
 }
