@@ -16,7 +16,7 @@
 			<c:forEach var="user" items="${users}">
 			<div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="/users/${user.username}">
+                        <a href="/users/${user.id}">
                             <h3 class="panel-title">${user.username}</h3>
                         </a>    
                     </div>
