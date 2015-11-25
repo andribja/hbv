@@ -20,10 +20,6 @@ public class User {
     private String email;
     private String hash;
     private double rating;
-
-    @Transient
-    private double overallRating;
-    @Transient
     private int numRatings;
 
     public User() {
@@ -35,7 +31,6 @@ public class User {
         this.email = email;
 
         rating = 0;
-        overallRating = 0;
         numRatings = 0;
     }
 
@@ -72,7 +67,12 @@ public class User {
     }
 
     public void giveRating(double rating) {
-        this.rating = (overallRating + rating) / ++numRatings;
+
+        this.rating = (this.rating*numRatings + rating) / ++numRatings;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public double getRating() {
@@ -83,7 +83,7 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User = [username=%s, email=%s]",
-                username, email);
+                "User = [username=%s, email=%s, number of ratings=%s, rating=%s]",
+                username, email, numRatings, rating);
     }
 }

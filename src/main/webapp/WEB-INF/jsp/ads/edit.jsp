@@ -24,6 +24,7 @@
         </div>
         <div class="form-group">
             <input type="submit" value="Vista" class="btn btn-default"></input>
+
             Veldu kaupanda
             <select id="select-user" name="buyer">
                 <option></option>

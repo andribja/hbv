@@ -30,5 +30,6 @@
 
 
         <input type="submit" value="Senda" class="btn btn-default"></input>
+        Gefðu notanda einkunn <input type="number" name="rating" value="5" min="0" max="5"></input>
     </sf:form>
 </t:wrapper>

@@ -1,6 +1,7 @@
 package project.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.User;
 
 import java.util.List;
@@ -26,5 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean exists(Long id);
 
-
+    @Query(value = "SELECT AVG(r.rating) FROM Review r WHERE r.receiver.id=?1")
+    double getRatingFor(Long id);
 }

@@ -47,5 +47,7 @@ public interface AdService {
 
     List<Ad> findByAuthor_id(Long username);
 
+    List<Ad> findAllActive();
+
     List<Ad> findAllUnreviewedBy(Long user_id);
 }

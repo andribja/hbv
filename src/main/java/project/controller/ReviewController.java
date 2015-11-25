@@ -1,5 +1,6 @@
 package project.controller;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,8 +66,13 @@ public class ReviewController {
         HttpSession session = request.getSession(false);
 
         User sender = (User) session.getAttribute("user");
-        User receiver = (User) userService.findOne(Long.parseLong(request.getParameter("receiver_id")));
+        User receiver = userService.findOne(Long.parseLong(request.getParameter("receiver_id")));
         Ad relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
+        double rating = Double.parseDouble(request.getParameter("rating"));
+
+        receiver.giveRating(rating);
+
+        System.out.println(receiver);
 
         if(relevantAd.getBuyer() == null) {
             return "redirect:/";
@@ -75,9 +81,15 @@ public class ReviewController {
         review.setSender(sender);
         review.setReceiver(receiver);
         review.setRelevantAd(relevantAd);
-        review.setSendTime((new Date()).getTime());
+        review.setRating(rating);
+        review.setReviewTime((new Date()).getTime());
 
-        reviewService.save(review);
+        try {
+            reviewService.save(review);
+        } catch (Exception e) {
+
+            return "redirect:/";
+        }
 
         return "reviews/success";
     }

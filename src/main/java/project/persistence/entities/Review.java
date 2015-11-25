@@ -26,6 +26,7 @@ public class Review {
     @ManyToOne
     private User receiver;
     private long reviewTime;
+    private double rating;
 
     @OneToOne
     @JoinColumn(name="ad_id")
@@ -67,15 +68,15 @@ public class Review {
         this.receiver = receiver;
     }
 
-    public long getSendTime() {
+    public long getReviewTime() {
         return reviewTime;
     }
 
-    public void setSendTime(long reviewTime) {
+    public void setReviewTime(long reviewTime) {
         this.reviewTime = reviewTime;
     }
 
-    public Timestamp getSendTimestamp() {
+    public Timestamp getReviewTimestamp() {
         return new Timestamp(reviewTime);
     }
 
@@ -87,11 +88,19 @@ public class Review {
         this.relevantAd = relevantAd;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
     // This is for easier debug.
     @Override
     public String toString() {
         return String.format(
                 "Review = [comment=%s, sender=%s, receiver=%s, created=%s]",
-                comment, sender, receiver, this.getSendTimestamp());
+                comment, sender, receiver, this.getReviewTimestamp());
     }
 }

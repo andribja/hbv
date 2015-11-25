@@ -63,4 +63,9 @@ public class UserServiceImplementation implements UserService {
     public boolean exists(Long id) {
         return repository.exists(id);
     }
+
+    @Override
+    public double getRatingFor(Long id) {
+        return repository.getRatingFor(id);
+    }
 }

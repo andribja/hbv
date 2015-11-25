@@ -22,14 +22,14 @@ public class Message {
     private String title;
     @Column(columnDefinition="text")
     private String content;
+    private long sendTime;
+    private boolean read;
 
     @OneToOne
     private User sender;
 
     @OneToOne
     private User receiver;
-
-    private long sendTime;
 
     public Message() {
 
@@ -38,6 +38,7 @@ public class Message {
     public Message(String title, String content) {
         this.title = title;
         this.content = content;
+        this.read = false;
     }
 
     public Long getId() {
@@ -86,6 +87,14 @@ public class Message {
 
     public Timestamp getSendTimestamp() {
         return new Timestamp(sendTime);
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 
     // This is for easier debug.

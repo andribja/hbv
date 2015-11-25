@@ -20,4 +20,6 @@ public interface UserService {
 
     boolean exists(Long id);
 
+    double getRatingFor(Long id);
+
 }

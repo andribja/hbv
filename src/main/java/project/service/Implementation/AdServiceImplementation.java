@@ -63,6 +63,11 @@ public class AdServiceImplementation implements AdService {
     }
 
     @Override
+    public List<Ad> findAllActive() {
+        return repository.findAllWithoutBuyer();
+    }
+
+    @Override
     public List<Ad> findAllUnreviewedBy(Long user_id) {
         System.out.println("watup " + user_id);
 //        return repository.findAll();

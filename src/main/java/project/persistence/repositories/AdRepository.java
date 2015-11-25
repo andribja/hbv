@@ -40,5 +40,8 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
                             "(SELECT r.relevantAd.id FROM Review r WHERE (r.sender.id=?1))")
     List<Ad> findAllUnreviewedBy(Long user_id);
 
+    @Query(value = "SELECT ad FROM Ad ad WHERE ad.buyer IS NOT NULL")
+    List<Ad> findAllWithoutBuyer();
+
 
 }
