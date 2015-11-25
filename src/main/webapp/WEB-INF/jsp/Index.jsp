@@ -6,15 +6,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <t:head>
-    <title>POS System</title>
+    <title>Greiðan</title>
 </t:head>
 
 <t:wrapper>
     <div class="jumbotron">
-    	<h1>Piece Of Shit System</h1>
+    	<h1>Greiðan</h1>
     	<c:choose>
 			<c:when test="${empty sessionScope.user.username}">
-	    		<p>Velkomin/n á Piece Of Shit System!</p>
+	    		<p>Velkomin/n á Greiðuna!</p>
 	    		<br />
 	    	</c:when>
 	    	<c:otherwise>
