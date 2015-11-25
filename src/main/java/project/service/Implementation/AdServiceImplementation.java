@@ -61,4 +61,13 @@ public class AdServiceImplementation implements AdService {
     public List<Ad> findByAuthor_id(Long user_id) {
         return repository.findByAuthor_id(user_id);
     }
+
+    @Override
+    public List<Ad> findAllUnreviewedBy(Long user_id) {
+        System.out.println("watup " + user_id);
+//        return repository.findAll();
+        List<Ad> foo = repository.findAllUnreviewedBy(user_id);
+        System.out.println("Result: " + foo);
+        return foo;
+    }
 }

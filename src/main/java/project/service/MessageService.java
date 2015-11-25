@@ -1,6 +1,7 @@
 package project.service;
 
 import project.persistence.entities.Message;
+import project.persistence.entities.User;
 
 import java.util.List;
 
@@ -19,5 +20,7 @@ public interface MessageService {
     List<Message> findBySender(String sender);
 
     List<Message> findByReceiver(String receiver);
+
+    void send(Message message);
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.User;
+import project.service.AdService;
 import project.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,18 +20,23 @@ import java.util.Map;
 public class UserController {
 
     UserService userService;
+    AdService adService;
     //Facebook facebook;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AdService adService) {
         this.userService = userService;
+        this.adService = adService;
         //this.facebook = facebook;
     }
 
     // GET view for a single user
     @RequestMapping(value = "/userpage", method=RequestMethod.GET)
-    public String userViewGet(Model model) {
+    public String userViewGet(HttpServletRequest request, Model model) {
        //model.addAttribute("user", userService.findOne("test"));
+
+        User user = (User) request.getSession().getAttribute("user");
+        model.addAttribute("ads", adService.findAllUnreviewedBy(user.getId()));
 
         return "users/user";
     }
@@ -50,12 +56,12 @@ public class UserController {
         return "users/userlist";
     }
 
-    @RequestMapping(value= "/user/{user_id}", method = RequestMethod.GET)
+    @RequestMapping(value= "/users/{user_id}", method = RequestMethod.GET)
     public String userViewGet(@PathVariable Long user_id, Model model) {
 
         model.addAttribute("user", userService.findOne(user_id));
 
-        return "users/user";
+        return "users/profile";
     }
 
     @RequestMapping(value = "/user/delete", method = RequestMethod.POST)

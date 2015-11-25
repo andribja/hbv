@@ -46,4 +46,6 @@ public interface AdService {
     List<Ad> findByName(String name);
 
     List<Ad> findByAuthor_id(Long username);
+
+    List<Ad> findAllUnreviewedBy(Long user_id);
 }

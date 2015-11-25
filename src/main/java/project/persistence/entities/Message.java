@@ -35,11 +35,9 @@ public class Message {
 
     }
 
-    public Message(String title, String content, User sender, User receiver) {
+    public Message(String title, String content) {
         this.title = title;
         this.content = content;
-        this.sender = sender;
-        this.receiver = receiver;
     }
 
     public Long getId() {

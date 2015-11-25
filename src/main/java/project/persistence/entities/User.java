@@ -19,6 +19,12 @@ public class User {
     private String username;
     private String email;
     private String hash;
+    private double rating;
+
+    @Transient
+    private double overallRating;
+    @Transient
+    private int numRatings;
 
     public User() {
 
@@ -27,6 +33,10 @@ public class User {
     public User(String username, String email) {
         this.username = username;
         this.email = email;
+
+        rating = 0;
+        overallRating = 0;
+        numRatings = 0;
     }
 
     public Long getId() {
@@ -59,6 +69,14 @@ public class User {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public void giveRating(double rating) {
+        this.rating = (overallRating + rating) / ++numRatings;
+    }
+
+    public double getRating() {
+        return rating;
     }
 
     // This is for easier debug.

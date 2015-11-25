@@ -1,5 +1,6 @@
 package project.persistence.entities;
 
+import org.mockito.internal.verification.Times;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Ad {
     @Column(columnDefinition="text")
     private String content;
     private long creationTime;
+    private long updatedTime;
 
     @OneToOne
     @JoinColumn(name="author_id")
@@ -88,8 +90,20 @@ public class Ad {
         creationTime = time;
     }
 
+    public long getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(long updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
     public Timestamp getCreationTimestamp() {
         return new Timestamp(creationTime);
+    }
+
+    public Timestamp getUpdatedTimestamp() {
+        return new Timestamp(updatedTime);
     }
 
     // This is for easier debug.
