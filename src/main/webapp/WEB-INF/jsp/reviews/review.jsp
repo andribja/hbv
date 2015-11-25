@@ -11,13 +11,18 @@
 </t:head>
 
 <t:wrapper>
-    <h2>SKrifa ummæli</h2>
+    <h2>Skrifa ummæli</h2>
+    <p>Þú ert að skrifa ummæli fyrir notandann ${receiver.username}</p>
+    <p>Vegna auglýsingarinnar ${ad.name}</p>
 
-    <sf:form name="form" action="/review?user_id=${receiver_id}&ad_id=${ad_id}" method="post" commandName="review" role="form">
+    <sf:form name="form" action="/review" method="post" commandName="review" role="form">
         <div class="form-group">
             <label for="comment">Ummæli:</label>
             <sf:input type="text" path="comment" id="comment" class="form-control"/>
         </div>
+
+        <input type="hidden" name="receiver_id" value="${receiver.id}"/>
+        <input type="hidden" name="ad_id" value="${ad.id}"/>
 
         <%--<sf:input type="hidden" path="sender" value=${sender}></sf:input>--%>
         <%--<sf:input type="hidden" path="receiver" value=${receiver}></sf:input>--%>

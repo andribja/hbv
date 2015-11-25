@@ -53,8 +53,8 @@ public class ReviewController {
             receiver = relevantAd.getBuyer();
         }
 
-        model.addAttribute("receiver_id", receiver.getId());
-        model.addAttribute("ad_id", relevantAd.getId());
+        model.addAttribute("receiver", receiver);
+        model.addAttribute("ad", relevantAd);
         model.addAttribute("review", new Review());
         return "reviews/review";
     }
@@ -65,7 +65,7 @@ public class ReviewController {
         HttpSession session = request.getSession(false);
 
         User sender = (User) session.getAttribute("user");
-        User receiver = (User) userService.findOne(Long.parseLong(request.getParameter("user_id")));
+        User receiver = (User) userService.findOne(Long.parseLong(request.getParameter("receiver_id")));
         Ad relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
 
         if(relevantAd.getBuyer() == null) {
