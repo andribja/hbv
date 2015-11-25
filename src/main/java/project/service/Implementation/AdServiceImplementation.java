@@ -3,6 +3,7 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Ad;
+import project.persistence.entities.User;
 import project.persistence.repositories.AdRepository;
 import project.service.AdService;
 

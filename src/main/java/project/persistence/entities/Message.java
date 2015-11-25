@@ -31,6 +31,10 @@ public class Message {
     @OneToOne
     private User receiver;
 
+    @OneToOne
+    @JoinColumn(name="ad_id")
+    private Ad relevantAd;
+
     public Message() {
 
     }
@@ -95,6 +99,14 @@ public class Message {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public Ad getRelevantAd() {
+        return relevantAd;
+    }
+
+    public void setRelevantAd(Ad relevantAd) {
+        this.relevantAd = relevantAd;
     }
 
     // This is for easier debug.

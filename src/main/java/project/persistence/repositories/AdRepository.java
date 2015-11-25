@@ -42,6 +42,4 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
 
     @Query(value = "SELECT ad FROM Ad ad WHERE ad.buyer IS NOT NULL")
     List<Ad> findAllWithoutBuyer();
-
-
 }

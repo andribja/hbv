@@ -1,6 +1,7 @@
 package project.service;
 
 import project.persistence.entities.Ad;
+import project.persistence.entities.User;
 
 import java.util.List;
 

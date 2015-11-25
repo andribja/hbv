@@ -29,4 +29,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT AVG(r.rating) FROM Review r WHERE r.receiver.id=?1")
     double getRatingFor(Long id);
+
+
 }

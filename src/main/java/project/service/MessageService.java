@@ -23,4 +23,6 @@ public interface MessageService {
 
     void send(Message message);
 
+    List<User> findAllInterested(Long adId);
+
 }

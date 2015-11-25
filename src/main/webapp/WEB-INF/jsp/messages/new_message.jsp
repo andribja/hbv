@@ -26,11 +26,11 @@
 
         <input type="hidden" name="receiver_id" value="${receiver.id}"/>
 
-        <%--<c:choose>--%>
-            <%--<c:when test="${not empty ad}">--%>
-                <%--<input type="hidden" name="ad_id" value="${ad.id}"/>--%>
-            <%--</c:when>--%>
-        <%--</c:choose>--%>
+        <c:choose>
+            <c:when test="${not empty ad}">
+                <input type="hidden" name="ad_id" value="${ad.id}"/>
+            </c:when>
+        </c:choose>
 
 
 
