@@ -18,12 +18,21 @@
 	<c:choose>
 		<c:when test="${not empty ads}">
 			<p>Þú átt eftir að gefa umsögn fyrir eftirfarandi auglýsingar:</p>
-			<ul>
+			<!-- <ul> -->
 			<c:forEach var="ad" items="${ads}">
-				<li><a href="/ads/${ad.id}">${ad.name}</a> -
-					<a href="/review?ad_id=${ad.id}">Skilja eftir umsögn</a> </li>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a href="/ads/${ad.id}"><h3 class="panel-title">${ad.name}</h3></a>
+                            <a href="/users/${ad.author.id}" class="text-muted">${ad.author.username}</a>
+					</div>
+					<div class="panel-footer">
+						<a id="interest-message" href="/review?ad_id=${ad.id}">Skilja eftir umsögn</a>
+					</div>
+				</div>
+				<!-- <li><a href="/ads/${ad.id}">${ad.name}</a> -
+					 <a class="btn btn-default" href="/review?ad_id=${ad.id}" role="button">Skilja eftir umsögn</a> </li> -->
 			</c:forEach>
-			</ul>
+			<!-- </ul> -->
 		</c:when>
 	</c:choose>
 </t:wrapper>

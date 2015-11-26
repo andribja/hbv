@@ -98,3 +98,12 @@ label:not(#remember-me-label) {
 a:hover {
 	color: #444;
 }
+
+.label-default {
+	float: right;
+	color: #2E78DC;
+	background-color: white;
+	margin-left: 20px;
+	padding: 10px;
+	border-radius: 20px;
+}
