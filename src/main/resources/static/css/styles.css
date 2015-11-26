@@ -94,3 +94,7 @@ label:not(#remember-me-label) {
 .text-muted:not(#timestamp) {
 	color: rgba(255, 255, 255, 0.5);
 }
+
+a:hover {
+	color: #444;
+}

@@ -17,7 +17,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a href="/messages/${message.id}">
-                            <h3 class="panel-title">${message.title}</h3>
+                            <h3 class="panel-title">${message.title}<c:if test="${not message.read}"><span class="label label-default">Ólesið</span>
+</c:if></h3>
                             <a href="/users/${message.sender.id}" class="text-muted">${message.sender.username}</a>
                         </a>
                     </div>
@@ -26,7 +27,7 @@
                         <p>${message.content}</p>
                     </div>
                 </div>
-            </c:forEach>
+            </c:forEach>s
         </c:when>
     </c:choose>
 </t:wrapper>

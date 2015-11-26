@@ -24,7 +24,7 @@
 				<div class="panel-footer">
 					<c:choose>
 						<c:when test="${not empty sessionScope.user}">
-							<a href="/message?user_id=${ad.author.id}&ad_id=${ad.id}">Hefurðu áhuga? Sendu ${ad.author.username} skilaboð</a>
+							<a id="interest-message" href="/message?user_id=${ad.author.id}&ad_id=${ad.id}">Hefurðu áhuga? Sendu ${ad.author.username} skilaboð</a>
 						</c:when>
 						<c:otherwise>
 							<a href="/login?redirect=true">Hefurðu áhuga? Skráðu þig inn til að senda ${ad.author.username} skilaboð</a>
