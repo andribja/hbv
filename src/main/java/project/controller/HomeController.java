@@ -1,14 +1,16 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import project.service.StringManipulationService;
 
 @Controller
-public class HomeController {
+public class HomeController implements ErrorController{
 
     // Instance Variables
     StringManipulationService stringService;
@@ -32,4 +34,19 @@ public class HomeController {
         // file that has the same name
         return "Index";
     }
+
+    @RequestMapping(value = "/error")
+    public String error() {
+
+        return "errorpage";
+    }
+
+    private static final String PATH = "/error";
+
+    @Override
+    public String getErrorPath() {
+
+        return PATH;
+    }
+
 }

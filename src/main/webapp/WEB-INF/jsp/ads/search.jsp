@@ -17,5 +17,8 @@
             <label for="query">Leit</label>
             <input type="text" name="query" id="query" class="form-control"/>
         </div>
+        <div class="form-group">
+            <input type="submit" value="Leita" class="btn btn-default"/>
+        </div>
     </form>
 </t:wrapper>

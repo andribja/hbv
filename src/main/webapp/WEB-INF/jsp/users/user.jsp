@@ -12,16 +12,21 @@
 
 <t:wrapper>
 	<h2>Notandi: ${user.username}</h2>
-    <a class="btn btn-default" href="/ads/my_ads" role="button">Mínar auglýsingar</a>
-    <a class="btn btn-default" href="/messages/my_messages" role="button">Mín skilaboð(${fn:length(unread)})</a>
+	<a class="btn btn-default" href="/ads/my_ads" role="button">Mínar auglýsingar</a>
+	<a class="btn btn-default" href="/messages/my_messages" role="button">Mín skilaboð (${fn:length(unread)})</a>
+
+	<hr>
 
 	<c:choose>
 		<c:when test="${not empty ads}">
 			<p>Þú átt eftir að gefa umsögn fyrir eftirfarandi auglýsingar:</p>
-			<ul>
+			<ul class="list-group">
 			<c:forEach var="ad" items="${ads}">
-				<li><a href="/ads/${ad.id}">${ad.name}</a> -
-					<a href="/review?ad_id=${ad.id}">Skilja eftir umsögn</a> </li>
+				<li class="list-group-item">
+					<a href="/ads/${ad.id}"><h4>${ad.name}</h4></a>
+					<a href="/review?ad_id=${ad.id}">Skilja eftir umsögn</a>
+					</li>
+				</li>
 			</c:forEach>
 			</ul>
 		</c:when>
