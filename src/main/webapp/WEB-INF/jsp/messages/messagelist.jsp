@@ -27,7 +27,7 @@
                         <p>${message.content}</p>
                     </div>
                 </div>
-            </c:forEach>s
+            </c:forEach>
         </c:when>
     </c:choose>
 </t:wrapper>
