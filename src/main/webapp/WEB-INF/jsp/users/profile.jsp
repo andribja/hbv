@@ -4,6 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:head>
     <title>Prófíll</title>
@@ -13,10 +14,11 @@
     <h2>Notandi: ${user.username}</h2>
     <a class="btn btn-default" href="/ads/user/${user.id}" role="button">Auglýsingar notanda</a>
     <a class="btn btn-default" href="/message?user_id=${user.id}" role="button">Senda skilaboð</a>
+
+	<h3>Umsagnir um ${user.username}</h3>
     <c:choose>
 		<c:when test="${not empty reviews}">
-			<h3>Umsagnir um ${user.username}</h3>
-			<p>Meðaleinkunn ${user.rating}</p>
+			<p>Meðaleinkunn <fmt:formatNumber value="${user.rating}" maxFractionDigits="2"/> </p>
 			<c:forEach var="review" items="${reviews}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -31,5 +33,8 @@
 				</div>
 			</c:forEach>
 		</c:when>
+		<c:otherwise>
+			<p>Notandinn hefur ekki fengið neinar umsagnir enn</p>
+		</c:otherwise>
 	</c:choose>
 </t:wrapper>

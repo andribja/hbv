@@ -25,17 +25,17 @@
         <div class="form-group">
             <input type="submit" value="Vista" class="btn btn-default"></input>
 
-            Veldu kaupanda
-            <select id="select-user" name="buyer">
-                <option></option>
-                <c:forEach var="user" items="${users}">
-                    <c:choose>
-                        <c:when test="${user.id ne sessionScope.user.id}">
-                            <option value="${user.id}">${user.username}</option>
-                        </c:when>
-                    </c:choose>
-                </c:forEach>
-            </select>
+            <%--Veldu kaupanda--%>
+            <%--<select id="select-user" name="buyer">--%>
+                <%--<option></option>--%>
+                <%--<c:forEach var="user" items="${users}">--%>
+                    <%--<c:choose>--%>
+                        <%--<c:when test="${user.id ne sessionScope.user.id}">--%>
+                            <%--<option value="${user.id}">${user.username}</option>--%>
+                        <%--</c:when>--%>
+                    <%--</c:choose>--%>
+                <%--</c:forEach>--%>
+            <%--</select>--%>
         </div>
     </form>
 </t:wrapper>

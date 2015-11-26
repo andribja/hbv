@@ -43,9 +43,26 @@ public class ReviewController {
     public String reviewGet(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
 
-        User sender = (User) session.getAttribute("user");
-        Ad relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
+        User sender = new User();
         User receiver = new User();
+        Ad relevantAd = new Ad();
+
+        try {
+            sender = (User) session.getAttribute("user");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return "redirect:/login?redirect=true";
+        }
+
+        try {
+            relevantAd = adService.findOne(Long.parseLong(request.getParameter("ad_id")));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return "redirect:/error";
+        }
+
 
         if(sender.getId() == relevantAd.getAuthor().getId()) {
             // Reviewer is the author
